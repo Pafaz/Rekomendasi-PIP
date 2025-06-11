@@ -226,16 +226,17 @@ export default function AdminNavbar({ isOpen, toggleSidebar }) {
 
       {/* Logout Button */}
       <div className="border-t border-gray-200 p-4">
-        <Link 
-          href="/login" // atau path yang sesuai
-          className={`flex items-center gap-3 px-4 py-3 rounded-md text-red-600 hover:bg-red-50 transition-colors select-none truncate`}
+        <button
+          onClick={handleLogout}
+          className="flex items-center gap-3 px-4 py-3 rounded-md text-red-600 hover:cursor-pointer hover:bg-red-50 transition-colors select-none truncate w-full text-left"
           title="Keluar"
         >
-          <span onClick={handleLogout}>
-            {/* Konten di sini */}
-            {isOpen && <span className="font-medium">{loading ? "Loading..." : "Keluar"}</span>}
-          </span>
-        </Link>
+          {isOpen && (
+            <span className="font-medium">
+              {loading ? "Loading..." : "Keluar"}
+            </span>
+          )}
+        </button>
       </div>
     </aside>
   );
