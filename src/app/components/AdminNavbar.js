@@ -17,6 +17,7 @@ import {
 } from "@heroicons/react/24/outline";
 import { useRouter } from "next/navigation";
 import Loading from "./Loading";
+import Cookies from 'js-cookie';
 
 const menuItems = [
   {
@@ -66,7 +67,7 @@ export default function AdminNavbar({ isOpen, toggleSidebar }) {
 
       if (response.ok) {
         localStorage.removeItem("token");
-        request.cookies.delete('token');
+        Cookies.remove("token");
         router.push("/login");
       }
       setLoading(false);
