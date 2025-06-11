@@ -81,7 +81,6 @@ export default function Register() {
       });
       router.push('/login');
       setLoading(false);
-      console.log('Register sukses:', json);
     } catch (err) {
       console.error('Register gagal:', err.message);
       setError(err.message);
