@@ -62,6 +62,7 @@ export default function AdminNavbar({ isOpen, toggleSidebar }) {
       })
 
       if (response.ok) {
+        console.log(`sukses logout`);
         localStorage.removeItem("token");
         Cookies.remove('token');
         router.push("/login");
