@@ -46,7 +46,6 @@ export default function ImportStudentsPage() {
     try {
       const formData = new FormData();
       formData.append("file", file);
-      console.log(formData);
       
 
       const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/siswa/import`, {
@@ -149,7 +148,7 @@ export default function ImportStudentsPage() {
                 <Typography variant="body2" sx={{ color: "#15803d" }}>
                   Data siswa berhasil diimport.{" "}
                   <Link
-                    href="/admin/data-siswa "
+                    href="/admin/data-siswa"
                     style={{ textDecoration: "underline", color: "#15803d" }}
                   >
                     Lihat data siswa
