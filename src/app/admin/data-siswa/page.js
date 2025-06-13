@@ -96,7 +96,7 @@ export default function DataSiswaPage() {
   const filteredStudents = students.filter((s) => {
     return (
       (s.namaSiswa.toLowerCase().includes(searchTerm.toLowerCase())) &&
-      (filterTransportasi === "all" || s.alatTransportasi === filterTransportasi) &&
+      (filterTransportasi === "all" || s.transportasi === filterTransportasi) &&
       (filterPekerjaanOrtu === "all" || s.pekerjaanOrtu === filterPekerjaanOrtu)
     );
   });
