@@ -17,6 +17,7 @@ import {
 } from "@heroicons/react/24/outline";
 import { useRouter } from "next/navigation";
 import Loading from "./Loading";
+import Cookies from 'js-cookie';
 
 const menuItems = [
   {
@@ -57,13 +58,16 @@ export default function AdminNavbar({ isOpen, toggleSidebar }) {
     const token = localStorage.getItem("token");
     try {
       const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/logout`, {
-        Authorization: `Bearer ${token}`,
         method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
       })
 
       if (response.ok) {
         localStorage.removeItem("token");
-        Cookies.remove('token');
+        Cookies.remove("token");
         router.push("/login");
       }
       setLoading(false);
@@ -223,16 +227,17 @@ export default function AdminNavbar({ isOpen, toggleSidebar }) {
 
       {/* Logout Button */}
       <div className="border-t border-gray-200 p-4">
-        <Link 
-          href="/login" // atau path yang sesuai
-          className={`flex items-center gap-3 px-4 py-3 rounded-md text-red-600 hover:bg-red-50 transition-colors select-none truncate`}
+        <button
+          onClick={handleLogout}
+          className="flex items-center gap-3 px-4 py-3 rounded-md text-red-600 hover:cursor-pointer hover:bg-red-50 transition-colors select-none truncate w-full text-left"
           title="Keluar"
         >
-          <span onClick={handleLogout}>
-            {/* Konten di sini */}
-            {isOpen && <span className="font-medium">{loading ? "Loading..." : "Keluar"}</span>}
-          </span>
-        </Link>
+          {isOpen && (
+            <span className="font-medium">
+              {loading ? "Loading..." : "Keluar"}
+            </span>
+          )}
+        </button>
       </div>
     </aside>
   );
